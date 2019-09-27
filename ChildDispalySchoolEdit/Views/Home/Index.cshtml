@@ -1,0 +1,33 @@
+﻿@model ChildDispalySchoolEdit.Models.Child
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/JS/PopUp.js"></script>
+    <link href="~/CSS/PopUp.css" rel="stylesheet" />
+    <script src="~/JS/Pagination.js"></script>
+    <script src="~/Scripts/JS/Search.js"></script>
+    <link href="~/CSS/Pagination.css" rel="stylesheet" />
+</head>
+<body>
+    @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { HttpMethod = "Post", Url = "/Home/Search" }))
+    {
+        <p>
+            <h2>Search Student Details</h2>
+            <input type="text" placeholder="Search Child Name.." name="SearchString">
+            <button type="submit"><i class="fa fa-search" onclick="Search()"></i></button>
+        </p>
+    }
+</body>
+</html>
+
+
+

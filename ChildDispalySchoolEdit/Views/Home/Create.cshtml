@@ -1,0 +1,59 @@
+﻿@model ChildDispalySchoolEdit.Models.Child
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/JS/Search.js"></script>
+    <script src="~/JS/PopUp.js"></script>
+    <link href="~/CSS/PopUp.css" rel="stylesheet" />
+    <script src="~/JS/Pagination.js"></script>
+    <link href="~/CSS/Pagination.css" rel="stylesheet" />
+    <script src="~/JS/Search.js"></script>
+</head>
+<body>
+    <h2>Create</h2>
+
+        <h2>Index</h2>
+
+        @using (Ajax.BeginForm("Search", "Home", new AjaxOptions { HttpMethod = "Post", Url = "/Home/Search" }))
+        {
+            <p>
+                <h2>Search Exercise Name</h2>
+                <input type="text" placeholder="Search Child Name.." name="SearchString">
+                <button type="submit"><i class="fa fa-search" onclick="Search()"></i></button>
+            </p>
+        }
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Child Name</th>
+                    <th>DOB</th>
+                    <th>School Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.DataChdNamCurrSchDOBProp)
+                {
+                    <tr>
+                        <th scope="row">@item.ChdName</th>
+                        <td>@item.ChdName</td>
+                        <td>@item.School</td>
+                        <td>@item.DOB</td>
+                        <td>
+                            <a data-value="@item.ChdName"
+                               href="javascript:void(0)" class="btnEdit">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</body>
+</html>
+

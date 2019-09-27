@@ -1,0 +1,78 @@
+﻿@model ChildDispalySchoolEdit.Models.Child
+
+@{
+    ViewBag.Title = "Search";
+    var listOfSchoolNamesAndIds = ViewBag.SchoolNameAndId;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="~/JS/Search.js"></script>
+</head>
+<body>
+    <h2>Search</h2>
+    <br /> <br />
+    <table class="table" id="myTable" style="width:100%">
+        <tr>
+            <th>
+                @Html.Label("Child ID")
+            </th>
+            <th>
+                @Html.Label("Child Name")
+            </th>
+            <th>
+                @Html.Label("DOB")
+            </th>
+            <th>
+                @Html.Label("School Name")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.DataChdNamCurrSchDOBProp)
+        {
+            <tr>
+                <td>
+                    @item.ChdId
+                </td>
+                <td>
+                    @item.ChdName
+                </td>
+                <td>
+                    @item.DOB
+                </td>
+                <td>
+                    @item.School
+                </td>
+                <td>
+                    <div data-role="main" class="ui-content">
+                        <a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all ui-icon-check ui-btn-icon-left">Update School</a>
+
+                        <div data-role="popup" id="myPopup" class="ui-content" style="min-width:250px;">
+                            <form method="post" action="@Url.Action("Home", "UpdateSchool")">
+                                <div>
+                                    <h3>Enter New School</h3>
+                                    <label for="usrnm" class="ui-hidden-accessible">School Name:</label>
+                                    @Html.DropDownList("SchoolNames", new SelectList(ViewBag.SchoolNameAndId, "schId", "schName"), "Select New School", new { @id = "MySearch" })
+                                    <label id="chdId" name="@item.ChdId" style="display:none">@item.ChdId</label>
+                                    <input type="submit" data-inline="true" value="UpdateSchool" name="@item.ChdId">
+                                </div>
+                            </form>>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+
+
+
